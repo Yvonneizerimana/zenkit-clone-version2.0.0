@@ -103,14 +103,7 @@ export const findByTag = async (req, res, next) => {
     const tagId = req.query.tag;
     
     try {
-        const allTasks = await TaskModel.find({});
-        const foundTasks = [];
-        allTasks.forEach(task => {
-            if (task.tags.includes(tagId)) {
-                foundTasks.push(task);
-            }
-        });
-
+        const foundTasks = await TaskModel.find({ tags: tagId }).populate('tags');
         return res.status(200).json({
             size: foundTasks.length,
             foundTasks
@@ -119,6 +112,7 @@ export const findByTag = async (req, res, next) => {
         next(error);
     }
 }
+
 
 export const deleteTask = async (req, res, next) => {
     try {

@@ -23,9 +23,26 @@ const TaskSchema = new Schema({
         ref: "Task",
         required: false,
     },
-    tags: {
-        type: Array,
+    tags:{
+        type:Schema.Types.ObjectId,
+        ref:"Tag",
         required: false,
+        type:Array
+    },
+    checkList:{
+        checkList:{
+            required:false,
+        type:Array},
+
+        isComplited:{
+type:Boolean,
+default:false
+        }
+    },
+    workLoad:{
+ type:Schema.Types.ObjectId,
+ ref:"Workloads",
+ required:false
     },
     dueDate: {
         startDate: {
